@@ -1,0 +1,48 @@
+{
+  "extends": [
+    "airbnb",
+    "plugin:flowtype/recommended"
+  ],
+  "plugins": [
+    "es2015",
+    "react",
+    "jsx-a11y",
+    "import",
+    "flowtype"
+  ],
+  "rules": {
+    "indent": 2,
+    "no-restricted-syntax": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "react/no-unused-prop-types": "off",
+    "react/sort-comp": [
+      "error",
+      {
+        "order": [
+          "type-annotations",
+          "static-methods",
+          "life-cycle",
+          "everything-else",
+          "render"
+        ]
+      }
+    ]
+  },
+  "globals": {
+    "describe": true,
+    "it": false,
+    "xit": false,
+    "before": true,
+    "beforeEach": true,
+    "afterEach": true,
+    "document": true
+  }
+}
