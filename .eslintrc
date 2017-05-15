@@ -4,7 +4,6 @@
     "plugin:flowtype/recommended"
   ],
   "plugins": [
-    "es2015",
     "react",
     "jsx-a11y",
     "import",
