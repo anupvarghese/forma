@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SimpleForm from './SimpleForm';
 import './App.css';
 
 class App extends Component {
@@ -11,6 +12,7 @@ class App extends Component {
         <p className="App-intro">
           world
         </p>
+        <SimpleForm />
       </div>
     );
   }
