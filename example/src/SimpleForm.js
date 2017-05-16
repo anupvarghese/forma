@@ -1,10 +1,12 @@
 import React from 'react';
-import Form from '../../lib';
+import { Form } from '../../lib';
 
-const SimpleForm = () => (
-  <div>
+const SimpleForm = (props) => (
+  <form onSubmit={props.onSubmit}>
     <input type="text" id="123" />
-  </div>
+  </form>
 )
 
-export default Form(SimpleForm);
+export default Form({
+  name: 'my-form'
+})(SimpleForm);

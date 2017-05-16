@@ -1,3 +1,7 @@
-import Form from './form';
+import Form from './components/form';
+import formReducer from './redux/reducer';
 
-export default Form;
+export {
+  Form,
+  formReducer,
+};
