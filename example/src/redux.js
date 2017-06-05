@@ -24,7 +24,7 @@ const userReducer = (state = fromJS(initialState.userDetails), action) => {
 
 const rootReducer = combineReducers({
   userDetails: userReducer,
-  form: formReducer,
+  forms: formReducer,
 })
 
 const sendUserDetails = (data) => ({
