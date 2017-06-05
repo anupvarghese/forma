@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setForm } from '../redux/actions/form';
+import { setForm, updateInputValue } from '../redux/actions/form';
 
 const createForm = ({ name }) => (WrappedComponent) => {
   class Form extends WrappedComponent { // eslint-disable-line
@@ -8,12 +8,22 @@ const createForm = ({ name }) => (WrappedComponent) => {
       this.props.setForm(name);
     }
 
-    handleOnChange = () => {
-      console.log('*****');
+    handleOnChange = id => (e) => {
+      const value = e.target.value;
+      this.props.updateInputValue(name, value, id);
+    }
+
+    handleOnBlur = id => (e) => {
+      const value = e.target.value;
+      this.props.updateInputValue(name, value, id);
     }
 
     attachProps = (child) => {
-      const newProps = { name, onChange: this.handleOnChange };
+      const newProps = {
+        onChange: this.handleOnChange(child.props.id),
+        onBlur: this.handleOnBlur(child.props.id),
+      };
+
       if (child.type === 'input') {
         return React.cloneElement(
           child,
@@ -37,12 +47,13 @@ const createForm = ({ name }) => (WrappedComponent) => {
     render() {
       const elementsTree = super.render();
       const result = this.mapRecursive(elementsTree, this.attachProps);
-      return React.createElement('form', { name }, ...result);
+      return React.createElement('forma', { name }, ...result);
     }
   }
 
   const dispatchToProps = {
     setForm,
+    updateInputValue,
   };
 
   const stateToProps = state => ({
