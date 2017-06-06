@@ -1,29 +1,10 @@
 import { combineReducers,createStore, compose, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
-import { fromJS, Iterable } from 'immutable';
+import { Iterable } from 'immutable';
 import { formReducer } from '../../lib/index';
 
-const initialState = {
-  userDetails: {
-    loading: false,
-    data: {},
-  }
-}
-const userReducer = (state = fromJS(initialState.userDetails), action) => {
-  switch (action.type) {
-    case 'SEND_USER_DETAILS': {
-      return state.mergeIn({
-        loading: true,
-      })
-    }
-    default: {
-      return state;
-    }
-  }
-}
 
 const rootReducer = combineReducers({
-  userDetails: userReducer,
   forms: formReducer,
 })
 
