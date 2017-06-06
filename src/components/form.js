@@ -4,9 +4,6 @@ import { setForm, updateInputValue } from '../redux/actions/form';
 
 const createForm = ({ name }) => (WrappedComponent) => {
   class Form extends WrappedComponent { // eslint-disable-line
-    componentDidMount() {
-      this.props.setForm(name);
-    }
 
     handleOnChange = id => (e) => {
       const value = e.target.value;
@@ -19,12 +16,12 @@ const createForm = ({ name }) => (WrappedComponent) => {
     }
 
     attachProps = (child) => {
-      const newProps = {
-        onChange: this.handleOnChange(child.props.id),
-        onBlur: this.handleOnBlur(child.props.id),
-      };
-
       if (child.type === 'input') {
+        const newProps = {
+          onChange: this.handleOnChange(child.props.id),
+          onBlur: this.handleOnBlur(child.props.id),
+        };
+
         return React.cloneElement(
           child,
           Object.assign({}, child.props, newProps),
@@ -57,7 +54,7 @@ const createForm = ({ name }) => (WrappedComponent) => {
   };
 
   const stateToProps = state => ({
-    formData: state[name] ? state[name].get(name) : '',
+    formData: state.forms,
   });
 
   return connect(stateToProps, dispatchToProps)(Form);
