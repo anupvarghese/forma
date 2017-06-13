@@ -3,9 +3,9 @@ import { Form } from '../../lib';
 
 class SimpleForm extends Component {
   componentDidMount() {
-    this.props.updateInputValue('my-form', 'hey', '123')
-    this.props.updateInputValue('my-form', 'hello', '124')
-    this.props.updateInputValue('my-form', 'there', '125')
+    this.props.updateInputValue({ formName: 'my-form', value: 'hey', id: '123' })
+    this.props.updateInputValue({ formName: 'my-form', value: 'hello', id: '124' })
+    this.props.updateInputValue({ formName: 'my-form', value: 'there', id: '125' })
   }
   render() {
     return (

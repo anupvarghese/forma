@@ -1,21 +1,30 @@
+/* @flow */
 import React from 'react';
 import { connect } from 'react-redux';
-import { setForm, updateInputValue } from '../redux/actions/form';
+import updateInputValue from '../redux/actions/form';
+import type { ClassComponent } from '../types';
 
-const createForm = ({ name }) => (WrappedComponent) => {
+const createForm = ({ name }: Object) => (WrappedComponent: ClassComponent<void, Object, void>) => {
   class Form extends WrappedComponent { // eslint-disable-line
-
-    handleOnChange = id => (e) => {
+    handleOnChange = (id: String) => (e: Object) => {
       const value = e.target.value;
-      this.props.updateInputValue(name, value, id);
+      this.props.updateInputValue({
+        formName: name,
+        value,
+        id,
+      });
     }
 
-    handleOnBlur = id => (e) => {
+    handleOnBlur = (id: String) => (e: Object) => {
       const value = e.target.value;
-      this.props.updateInputValue(name, value, id);
+      this.props.updateInputValue({
+        formName: name,
+        value,
+        id,
+      });
     }
 
-    attachProps = (child) => {
+    attachProps = (child: Object) => {
       if (child.type === 'input') {
         const newProps = {
           onChange: this.handleOnChange(child.props.id),
@@ -41,7 +50,7 @@ const createForm = ({ name }) => (WrappedComponent) => {
       )
     );
 
-    render() {
+    render(): React.Element<any> {
       const elementsTree = super.render();
       const result = this.mapRecursive(elementsTree, this.attachProps);
       return React.createElement('forma', { name }, ...result);
@@ -49,7 +58,6 @@ const createForm = ({ name }) => (WrappedComponent) => {
   }
 
   const dispatchToProps = {
-    setForm,
     updateInputValue,
   };
 

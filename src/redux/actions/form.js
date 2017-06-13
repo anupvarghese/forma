@@ -1,14 +1,9 @@
-const setForm = name => ({
-  type: 'SET_FORM_NAME',
-  data: name,
-});
+/* @flow */
+import type { ActionCreator } from '../../types';
 
-const updateInputValue = (formName, value, id) => ({
+const updateInputValue: ActionCreator = ({ formName, value, id }) => ({
   type: 'UPDATE_INPUT_VALUE',
   data: { formName, value, id },
 });
 
-export {
-  setForm,
-  updateInputValue,
-};
+export default updateInputValue;
