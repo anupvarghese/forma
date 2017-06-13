@@ -1,6 +1,8 @@
+/* @flow */
 import { fromJS } from 'immutable';
+import type { Action, DataState, Reducer } from '../../types';
 
-export default (state = fromJS({}), action) => {
+const reducer: Reducer = (state: DataState = fromJS({}), action: Action) => {
   switch (action.type) {
     case 'UPDATE_INPUT_VALUE': {
       const { formName, value, id } = action.data;
@@ -12,3 +14,5 @@ export default (state = fromJS({}), action) => {
     }
   }
 };
+
+export default reducer;
